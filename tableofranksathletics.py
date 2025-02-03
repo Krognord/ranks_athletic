@@ -1,68 +1,89 @@
 import sys
 
 
-def errorage():
-    if a > 120 or a < 1:
-        print('Are you idiot?')
+def error_handling(age):
+    if age > 120 or age < 1:
+        return False
+    return True
 
-def checkingman60m():
-    if r <= 9.54 and r > 8.94:
-        if a >= 10:
-            print(n + ', your sports category: III youth')
-        else:
-            print(n + ', your sports category is III youth, but you cannot be assigned because your age is less than 10 years old.')
-    elif r <= 8.94 and r > 8.44:
-        if a >= 10:
-            print(n + ', your sports category: II youth')
-        else:
-            print(n + ', your sports category is II youth, but you cannot be assigned because your age is less than 10 years old.')
-    elif r <= 8.44 and r > 8.04:
-        if a >= 10:
-            print(n + ', your sports category: I youth')
-        else:
-            print(n + ', your sports category is I youth, but you cannot be assigned because your age is less than 10 years old.')
-    elif r <= 8.04 and r > 7.64:
-        if a >= 10:
-            print(n + ', your sports category: III')
-        else:
-            print(n + ', your sports category is III, but you cannot be assigned because your age is less than 10 years old.')
-    elif r <= 7.64 and r > 7.34:
-        if a >= 10:
-            print(n + ', your sports category: II')
-        else:
-            print(n + ', your sports category is II, but you cannot be assigned because your age is less than 10 years old.')
-    elif r <= 7.34 and r > 7.04:
-        if a >= 10:
-            print(n + ', your sports category: I')
-        else:
-            print(n + ', your sports category is I, but you cannot be assigned because your age is less than 10 years old.')
-    elif r <= 7.04 and r > 6.78:
-        if a >= 14:
-            print(n + ', your sports category: Candidate for Master of Sports')
-        else:
-            print(n + ', your sports category is Candidate for Master of Sports, but you cannot be assigned because your age is less than 14 years old.')
-    elif r <= 6.78 and r > 6.60:
-        if a >= 15:
-            print(n + ', your sports category: Master of Sports')
-        else:
-            print(n + ', your sports category is Candidate for Master of Sports, but you cannot be assigned because your age is less than 15 years old.')
-    elif r <= 6.60:
-        if a >= 16:
-            print(n + ', your sports category: Master of Sports of international class')
-        else:
-            print(n + ', your sports category is Candidate for Master of Sports of international class, but you cannot be assigned because your age is less than 16 years old.')
+
+def check_man_60m(age, name):
+    categories = [
+        (9.54, 8.94, 10, 'III youth'),
+        (8.94, 8.44, 10, 'II youth'),
+        (8.44, 8.04, 10, 'I youth'),
+        (8.04, 7.64, 10, 'III'),
+        (7.64, 7.34, 10, 'II'),
+        (7.34, 7.04, 10, 'I'),
+        (7.04, 6.78, 14, 'Candidate for Master of Sports'),
+        (6.78, 6.60, 15, 'Master of Sports'),
+        (6.60, -float('inf'), 16, 'Master of Sports of international class')
+    ]
+    for upper, lower, min_age, category in categories:
+        if upper >= result > lower:
+            if age >= min_age:
+                return f'{name}, your sports category: {category}'
+            else:
+                return f'{name}, your sports category is {category}, but you cannot be assigned because your age is ' \
+                       f'less then {min_age} years old'
+
+
+def check_man_100m(age, name):
+    categories = [
+        (15.64, 14.64, 10, 'III youth'),
+        (14.64, 13.74, 10, 'II youth'),
+        (13.74, 12.84, 10, 'I youth'),
+        (12.84, 12.04, 10, 'III'),
+        (12.04, 11.44, 10, 'II'),
+        (11.44, 10.94, 10, 'I'),
+        (10.94, 10.55, 14, 'Candidate for Master of Sports'),
+        (10.55, 10.28, 15, 'Master of Sports'),
+        (10.28, -float('inf'), 16, 'Master of Sports of international class')
+    ]
+    for upper, lower, min_age, category in categories:
+        if upper >= result > lower:
+            if age >= min_age:
+                return f'{name}, your sports category: {category}'
+            else:
+                return f'{name}, your sports category is {category}, but you cannot be assigned because your age is ' \
+                       f'less then {min_age} years old'
+
+
+def check_man_200m(age, name):
+    categories = [
+        (34.24, 30.74, 10, 'III youth'),
+        (30.74, 28.24, 10, 'II youth'),
+        (28.24, 26.24, 10, 'I youth'),
+        (26.24, 24.54, 10, 'III'),
+        (24.54, 23.24, 10, 'II'),
+        (23.24, 22.24, 10, 'I'),
+        (22.24, 21.30, 14, 'Candidate for Master of Sports'),
+        (21.30, 20.65, 15, 'Master of Sports'),
+        (20.65, -float('inf'), 16, 'Master of Sports of international class')
+    ]
+    for upper, lower, min_age, category in categories:
+        if upper >= result > lower:
+            if age >= min_age:
+                return f'{name}, your sports category: {category}'
+            else:
+                return f'{name}, your sports category is {category}, but you cannot be assigned because your age is ' \
+                       f'less then {min_age} years old'
 
 
 if __name__ == '__main__':
-    n = input('Enter your name: ')
-    a = int(input('Enter your age: '))
-    g = int(input('Choose your gender: Man - 1; Woman - 2: '))
-    d = int(input('Enter your distance: '))
-    r = float(input('Enter your result: '))
+    name = input('Enter your name: ')
+    age = int(input('Enter your age: '))
+    gender = int(input('Choose your gender: Man - 1; Woman - 2: '))
+    distance = int(input('Enter your distance: '))
+    result = float(input('Enter your result: '))
 
-    errorage()
+    error_handling(age)
 
-    if g == 1 and d == 60:
-        checkingman60m()
+    if gender == 1 and distance == 60:
+        print(check_man_60m(age, name))
+    elif gender == 1 and distance == 100:
+        print(check_man_100m(age, name))
+    elif gender == 1 and distance == 200:
+        print(check_man_200m(age, name))
     else:
         sys.exit('You enter incorrect value')
