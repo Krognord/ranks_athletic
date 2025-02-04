@@ -1,10 +1,16 @@
 import sys
 
 
-def error_handling(age):
-    if age > 120 or age < 1:
-        return False
-    return True
+def enter_age():
+    while True:
+        try:
+            age = int(input('Enter your age: '))
+            if 5 <= age <= 100:
+                return age
+            else:
+                print('Age could be from 5 to 100')
+        except ValueError:
+            print('Enter an integer')
 
 
 def check_man_60m(age, name):
@@ -72,12 +78,10 @@ def check_man_200m(age, name):
 
 if __name__ == '__main__':
     name = input('Enter your name: ')
-    age = int(input('Enter your age: '))
+    age = enter_age()
     gender = int(input('Choose your gender: Man - 1; Woman - 2: '))
     distance = int(input('Enter your distance: '))
     result = float(input('Enter your result: '))
-
-    error_handling(age)
 
     if gender == 1 and distance == 60:
         print(check_man_60m(age, name))
