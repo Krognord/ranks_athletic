@@ -17,12 +17,12 @@ def enter_gender():
     while True:
         try:
             gender = int(input('Choose your gender: Man - 1; Woman - 2: '))
-            if 2 < gender < 1:
-                return gender
-            elif gender == 1:
+            if gender == 1:
                 return 'men'
-            else:
+            elif gender == 2:
                 return 'women'
+            else:
+                print('Choose your gender: Man - 1; Woman - 2: ')
         except ValueError:
             print('Enter an integer')
 
