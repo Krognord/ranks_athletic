@@ -1,5 +1,3 @@
-import sys
-
 from table_of_results import results_run
 
 
@@ -29,7 +27,7 @@ def enter_gender():
             print('Enter an integer')
 
 
-def check_man_run(age, name, gender):
+def check_run(name, age, gender, distance):
     categories = results_run.get(gender, {}).get(distance)
 
     for upper, lower, min_age, category in categories:
@@ -47,4 +45,4 @@ if __name__ == '__main__':
     gender = enter_gender()
     distance = int(input('Enter your distance: '))
     result = float(input('Enter your result: '))
-    print(check_man_run(age, name, gender))
+    print(check_run(name, age, gender, distance))
