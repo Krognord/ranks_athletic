@@ -19,7 +19,9 @@ def enter_gender():
     while True:
         try:
             gender = int(input('Choose your gender: Man - 1; Woman - 2: '))
-            if gender == 1:
+            if 2 < gender < 1:
+                return gender
+            elif gender == 1:
                 return 'men'
             else:
                 return 'women'
