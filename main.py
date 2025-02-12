@@ -22,7 +22,20 @@ def enter_gender():
             elif gender == 2:
                 return 'women'
             else:
-                print('Choose your gender: Man - 1; Woman - 2: ')
+                continue
+        except ValueError:
+            print('Enter an integer')
+
+
+def enter_distance():
+    while True:
+        try:
+            list_distance = {60, 100, 200, 400, 800}
+            distance = int(input('Enter your distance: '))
+            if distance in list_distance:
+                return distance
+            else:
+                print('Enter correct distance')
         except ValueError:
             print('Enter an integer')
 
@@ -43,6 +56,6 @@ if __name__ == '__main__':
     name = input('Enter your name: ')
     age = enter_age()
     gender = enter_gender()
-    distance = int(input('Enter your distance: '))
+    distance = enter_distance()
     result = float(input('Enter your result: '))
     print(check_run(name, age, gender, distance))
