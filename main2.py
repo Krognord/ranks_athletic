@@ -46,7 +46,7 @@ def enter_type_of_sport():
             print('Enter an integer')
 
 
-def enter_specification():
+def enter_specification(type_of_sport, gender):
     while True:
         try:
             specifications = list(results_sport[type_of_sport][gender].keys())
@@ -80,7 +80,7 @@ def enter_result():
                     hours = int(result_in_parts[0])
                     minutes = int(result_in_parts[1])
                     seconds = float(result_in_parts[2])
-                    result_seconds = hours * 60 + minutes * 60 + seconds
+                    result_seconds = hours * 3600 + minutes * 60 + seconds
                 else:
                     print('Incorrect time format')
                     continue
@@ -116,6 +116,6 @@ if __name__ == '__main__':
     age = enter_age()
     gender = enter_gender()
     type_of_sport = enter_type_of_sport()
-    specification = enter_specification()
+    specification = enter_specification(type_of_sport, gender)
     result = enter_result()
     print(check_result(name, age, gender, type_of_sport, specification, result))
