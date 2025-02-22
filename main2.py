@@ -1,6 +1,5 @@
 from table_of_results import results_sport
 
-
 def enter_age():
     while True:
         try:
@@ -22,20 +21,47 @@ def enter_gender():
             elif gender == 2:
                 return 'women'
             else:
+                print('Enter 1 or 2')
                 continue
         except ValueError:
             print('Enter an integer')
 
 
-def enter_distance():
+def enter_type_of_sport():
     while True:
         try:
-            list_distance = results_run['men'].keys()
-            distance = int(input('Enter your distance: '))
-            if distance in list_distance:
-                return distance
+            sports = list(results_sport.keys())
+
+            for i, sport in enumerate(sports, 1):
+                print(f'{i}. {sport}')
+            type_of_sport = int(input('Choose your type of sport (enter a number): ')) - 1
+            if 0 <= type_of_sport < len(sports):
+                selected_sport = sports[type_of_sport]
+                return selected_sport
             else:
-                print('Enter correct distance')
+                print('Enter a valid number from the list')
+                continue
+
+        except ValueError:
+            print('Enter an integer')
+
+
+def enter_specification():
+    while True:
+        try:
+            specifications = list(results_sport[type_of_sport][gender].keys())
+
+            for i, type in enumerate(specifications, 1):
+                print(f'{i}. {type}')
+            specification = int(input('Enter your number of specification (distance, weight, etc): ')) - 1
+
+            if 0 <= specification < len(specifications):
+                selected_specification = specifications[specification]
+                return selected_specification
+            else:
+                print('Enter a valid number from the list')
+                continue
+
         except ValueError:
             print('Enter an integer')
 
@@ -71,21 +97,25 @@ def enter_result():
         return result_seconds
 
 
-def check_result(name, age, gender, distance, result):
-    categories = results_sport.get(gender, {}).get(distance)
+def check_result(name, age, gender, type_of_sport, specification, result):
+    categories = results_sport.get(type_of_sport, {}).get(gender, {}).get(specification, [])
+
     for upper, lower, min_age, category in categories:
         if upper >= result > lower:
             if age >= min_age:
                 return f'{name}, your sports category: {category}'
             else:
                 return f'{name}, your sports category is {category}, but you cannot be assigned because your age is ' \
-                       f'less then {min_age} years old'
+                       f'less than {min_age} years old'
+
+    return f'{name}, no category found for your result'
 
 
 if __name__ == '__main__':
     name = input('Enter your name: ')
     age = enter_age()
     gender = enter_gender()
-    distance = enter_distance()
+    type_of_sport = enter_type_of_sport()
+    specification = enter_specification()
     result = enter_result()
-    print(check_result(name, age, gender, distance, result))
+    print(check_result(name, age, gender, type_of_sport, specification, result))
